@@ -556,8 +556,8 @@ filtering.)</em></p>
 attractions?</em></p>
 <pre class="r"><code>visitors %&gt;% 
   summarise(
-    mean_2022 = mean(n_2022),
-    med_2022 = median(n_2022)
+    mean_2022 = mean(n_2022, na.rm = TRUE),
+    med_2022 = median(n_2022, na.rm = TRUE)
   )</code></pre>
 <pre><code>## # A tibble: 1 × 2
 ##   mean_2022 med_2022
@@ -567,18 +567,23 @@ attractions?</em></p>
 <h3>Exercise h.</h3>
 <p><em>Perform the same calculation for the 2021 admissions
 data.</em></p>
-<pre class="r"><code>#visitors %&gt;% 
-#  ______(
-#    __________,
-#    __________
-#  )</code></pre>
+<pre class="r"><code>visitors %&gt;% 
+  summarise(
+    mean_2021 = mean(n_2021),
+    med_2021 = median(n_2021)
+  )</code></pre>
+<pre><code>## # A tibble: 1 × 2
+##   mean_2021 med_2021
+##       &lt;dbl&gt;    &lt;dbl&gt;
+## 1        NA       NA</code></pre>
 <p>All values in the output are <code>NA</code>!</p>
 </div>
 <div id="exercise-i." class="section level3">
 <h3>Exercise i.</h3>
 <p><em>What does <code>NA</code> stand for and why are you getting this
 as your answer to the previous question.</em></p>
-<p><strong>Write your answer here</strong></p>
+<p>#it is because of the na values in n_2021 so when calculating the
+mean it cant.</p>
 </div>
 <div id="exercise-j." class="section level3">
 <h3>Exercise j.</h3>
@@ -586,7 +591,7 @@ as your answer to the previous question.</em></p>
 <code>median()</code> commands to see what the input argument
 <code>na.rm</code> does. Edit your code from exercise h so that it
 computes the summary statistics where data is available.</em></p>
-<p><strong>Write your answer here</strong></p>
+<p>#add after the mean function, na.rm = TRUE</p>
 </div>
 </div>
 <div id="question-7" class="section level2">
@@ -610,18 +615,23 @@ visitor numbers in 2022?</em></p>
 <p><em>Observe in question 6 that the mean statistics across all
 settings are much larger than the corresponding median statistics.
 Discuss in your group what this suggests about the data.</em></p>
-<p><strong>Write your answer here</strong></p>
+<p>#the data in the lower quartile is less varied than the data in the
+upper quartile</p>
 </div>
 </div>
 <div id="question-8" class="section level2">
 <h2>Question 8</h2>
 <div id="exercise-l." class="section level3">
 <h3>Exercise l.</h3>
-<pre class="r"><code>#visitors %&gt;% 
-#  summarise(
-#     __________,
-#     __________,
-#  )</code></pre>
+<pre class="r"><code>visitors %&gt;% 
+  summarise(
+     max(n_2022),
+     min(n_2022),
+  )</code></pre>
+<pre><code>## # A tibble: 1 × 2
+##   `max(n_2022)` `min(n_2022)`
+##           &lt;dbl&gt;         &lt;dbl&gt;
+## 1       5636844          1130</code></pre>
 </div>
 </div>
 <div id="question-9" class="section level2">
@@ -656,8 +666,15 @@ visitors_with_nations %&gt;%
 <p><em>How many tourist attractions are there in each of the 4 nations?
 From this, discuss in your group how reliable you think the
 inter-quartile estimates are.</em></p>
-<pre class="r"><code>#________ %&gt;%
-#  ______(_______)</code></pre>
+<pre class="r"><code>visitors_with_nations %&gt;%
+  count(nation)</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   nation               n
+##   &lt;chr&gt;            &lt;int&gt;
+## 1 England            240
+## 2 Northern Ireland     9
+## 3 Scotland            97
+## 4 Wales                2</code></pre>
 </div>
 </div>
 </div>
